@@ -20,22 +20,24 @@ module OmniAuth
       end
 
       option :authorize_params, {
-        resource: 'https://graph.windows.net/'
+          resource: 'https://graph.windows.net/'
       }
 
       uid { raw_info["objectId"] }
 
       info do
         {
-          'email' => raw_info["userPrincipalName"],
-          'name' => [raw_info["givenName"], raw_info["surname"]].join(' '),
-          'nickname' => raw_info["displayName"]
+            'email' => raw_info["userPrincipalName"],
+            'name' => [raw_info["givenName"], raw_info["surname"]].join(' '),
+            'nickname' => raw_info["displayName"],
+            'first_name' => raw_info["first_name"],
+            'last_name' => raw_info["last_name"]
         }
       end
 
       extra do
         {
-          'raw_info' => raw_info
+            'raw_info' => raw_info
         }
       end
 
